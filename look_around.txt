@@ -1,0 +1,9 @@
+spawn:As you stand in the freezing darkness, you try to push aside the feeling of being watched and focus on your surroundings. Aside from 7 pairs of doors you don't see anything else of interest.
+close left:You can still feel the presence of the monster you killed. Or are you getting paranoid?\nThere's a <<broken notebook>> laying on the ground.
+middle left:There's a <<bed>> standing next to the left side of the wall. Near the opposite wall, there's a small <<closet>> next to which, on a dest, there's an old <<laptop>>. You notice a small <<safe>> right on your left, in the corner of the room. There's also a <<window>>, right in front of you. Could it be a way out?
+far left:There's a single diary on the floor. It's locked with a 3 digit locker.
+close right:There's a big puddle of blood from the shadow monster you've just killed. 'Why do they bleed?' you wonder.\nYou notice a <<new notebook>> lying on the table standing by the wall.
+middle right:All you can notice in this room is a desk on top of which, there's a <<pencil>>. There's also <<portrait>> on the other side of the room.
+far right:This room seems to be a whole different mistery. There's no furniture, all you can see if a painting on the <<floor>> and a weird text on the <<wall>>.
+door:You notice a <<pinpad>> on them. But that's the only thing that catches your attention.
+mirror room:You see a <<mirror>>. A single mirror on the wall. Aside from that, an oblivion surrounds you. There's only you and your reflection. Nothing else. Not even the doors you used to get here.
