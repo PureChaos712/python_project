@@ -1,14 +1,14 @@
-from storage import movement_map, descriptions, inventory, detailed_descriptions, items
-
-#czy w słowniku mogą być obiekty - jeśli tak, to tworzyć 2 klase - item i special item
+from storage import movement_map, descriptions, inventory, items
 
 def check_for_monster(direction, inventory):
-    if movement_map[direction].get("monster", False): #zły klucz, nie działa back
+    if direction in movement_map and movement_map[direction].get("monster", False):
         if "knife" in inventory:
             return True
         else: 
-            print("Pobije cie")
+            print("To enter this room you need some sort of a weapon")
             return False
+    elif direction == "forward":
+        return True
     else:
         return True
 
@@ -62,7 +62,7 @@ def take_item(item, current_location):
     except:
         print("There's no such thing in this room")
 
-def handle_special(item, current_location, player_health):
+def handle_special(item, current_location):
     if item == "knife" and current_location == "middle right":#add locarion behind canvas
         print(items[item].get("use"))
         items["canvas"]["state"] = "cut"
@@ -77,35 +77,36 @@ def handle_special(item, current_location, player_health):
             print("Nie masz pencil w ekwipunku")
         else:
             print("Nie masz na czym użyć ołówka")
-    elif item == "unindentified potion":
-        if player_health < 100:
-            inventory.pop(item)
-            player_health += 20
-            return (player_health)
+
     elif item == "diary":
         pass #po wpisaniu hasła - odblokuj i zmień wartość use
+
+def use_potion(player_health):
+    if player_health < 100:
+        inventory.remove("unindentified potion")
+        player_health += 20
+        return (player_health, inventory)
 
 #def handle_code()
 
 def use_item (item, current_location, player_health):
-    if items[item].get("special"):
-        handle_special(item, current_location, player_health)
-    else:
+    if "special" in items[item]:
+        if items[item].get("special") == "special":
+            handle_special(item, current_location, player_health)
+        elif items[item].get("special") == "input_code":
+            input_code(item)
+    elif "take" in items[item]:
         if items[item]["take"] and item in inventory:
             items[item].get("use")
-        elif items[item].get("location") == current_location:
-            items[item].get("use")
-        else:
-            print("WROOOONG Idk what tho")
+    elif items[item].get("location") == current_location:
+        items[item].get("use")
+    else:
+        print("WROOOONG Idk what tho")
 
-    
-# def use_item(item, current_location):
-#     if item in inventory and not items[item]["state"]:
-#         print(items[item].get("use"))
-#             #canvas cut flag        
-#     elif items[item]["use"] and item in inventory:
-#         print(items[item].get("use", "You can't use this item"))
-#     elif current_location == items[item].get("location"):
-#         print(items[item].get("use", "You can't use this item v2"))
-#     else:
-#         print("Coś innego się stało")
+def input_code(item):
+    user_code = input(f"Input password for <<{item}>>: ")
+    if user_code != items[item].get("code"):
+        print("Incorrect password")
+    else:
+        items[item]["examined"] = True
+        print("You input the right code")

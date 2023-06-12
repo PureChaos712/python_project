@@ -1,0 +1,17 @@
+add inventory in savefile
+handle all special items
+add input_code()
+handle endgame
+add all furniture
+add all text in english
+add flags to savefile
+change description after picking up an item
+uodpornić na itemy poza items
+
+
+(Chyba) 100% dobrze działają:
+'go'
+'inventory'
+'where am i'
+'look around'
+'user help'

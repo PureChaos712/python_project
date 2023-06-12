@@ -36,13 +36,16 @@ while player_health > 0:
         take_item(item, current_location)
     elif (action[0] == "use"):
         item = " ".join(action[1:])
-        use_item(item, current_location, player_health)
+        if item == "unindentified potion":
+            player_health, inventory = use_potion(player_health)
+        else:
+            use_item(item, current_location, player_health)
     elif (" ".join(action) == "where am i"):
         print(f"You are currently in {current_location}")
     elif (" ".join(action) == "quit"):
         file = open("savefile.txt", "w")
         file.write("0\n"+str(player_health)+"\n"+str(current_location))
-        print("Darkness surrounds you as you lose conciousness")
+        print("Darkness surrounds you as you lose consciousness")
         break
     else:
         print("Wrong command")

@@ -13,7 +13,6 @@ for line in file:
 
 file.close()
 
-#
 detailed_descriptions = {}
 file = open("/home/weronika/Desktop/python_projekt/look_around.txt", "r")
 
@@ -78,7 +77,7 @@ items = {
         "location": "middle left",
         "take": True,
         "use": "You use the knife on the canvas.",
-        "special": True
+        "special": "special"
     },
     "old notebook": {
         "description": "Zniszczony notatnik. Zdaje się, że za chwile rozpadnie się w twoich rękach",
@@ -124,18 +123,22 @@ items = {
         "location": "middle right",
         "take": True,
         "use": "specjalna rzecz",
-        "special": True
+        "special": "special"
     },
     "pinpad": {
         "description": "Czytnik pin na 6 cyfr, z czego pierwsze dwa miejsca świecą się czerwono, dwa następne na zielono, a ostatnie na niebiesko",
         "location": "door",
         "use": "Podanie kombinacji v2",
+        "special": "input_code",
+        "code": "111111"
     },
     "safe": {
         "description": "No sejf jak sejf. Na 4 cyfry",
         "location": "middle left",
         "use": "Podanie kombinacji?",
-        "examined": False
+        "examined": False,
+        "special": "input_code",
+        "code": "2137"
     },
     "canvas": {
         "description": "Płótno z dziewczyną trzymającą różę. Za nim wydaje się nie być ściany. Możesz spróbować ją przeciąć",
@@ -158,6 +161,8 @@ items = {
         "location": "middle left",
         "use": "Kod na lapku",
         "examined": False,
+        "special": "input_code",
+        "code": "0305"
     },
     "window": {
         "description": "Pustka",
@@ -178,6 +183,8 @@ items = {
         "take": True,
         "use": "Wpis w dzienniku",
         "examined": False,
+        "special": "input_code",
+        "code": "143"
     },
     #meble dziewczęce z pokoju
     "mirror": {
