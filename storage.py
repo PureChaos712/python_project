@@ -24,11 +24,9 @@ for line in file:
 file.close()
 
 file = open("movement_map.txt", "r")
-data = file.read()
-movement_map = json.loads(data)
+movement_map = json.load(file)
 file.close()
 
 file = open("items.txt", "r")
-data = file.read()
-items = json.loads(data)
+items = json.load(file)
 file.close()

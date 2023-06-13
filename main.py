@@ -60,12 +60,15 @@ while player_health > 0:
     elif (action == "quit"):
         file = open("savefile.txt", "w")
         
-        # if inventory:
-        
         file.write("0\n"+str(player_health)+"\n"+str(current_location)+"\n"+" ".join(inventory))
 
-        # else:
-        #     file.write("0\n"+str(player_health)+"\n"+str(current_location)+"\n0")
+        file = open("items.txt", "w")
+        json.dump(items, file)
+        file.close()
+
+        file = open("movement_map.txt", "w")
+        json.dump(movement_map, file)
+        file.close()
         
         print("Darkness surrounds you as you lose consciousness")
         break

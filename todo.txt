@@ -1,9 +1,9 @@
 handle all special items
 add input_code()
 handle endgame
-add all furniture
-add all text in english
-add flags to savefile
+#add all furniture
+#add all text in english
+
 change description after picking up an item
 uodpornić na itemy poza items
 add fighting
