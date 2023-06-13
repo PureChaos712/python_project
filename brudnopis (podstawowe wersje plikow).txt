@@ -85,3 +85,28 @@
 "location": "mirror room",
 "use": "Walka",
 "examined": 0}}
+
+{"spawn": {"close left": "close left",
+"middle left": "middle left",
+"far left": "far left",
+"close right": "close right",
+"middle right": "middle right",
+"far right": "far right",
+"forward": "door"}, 
+"close left": {"back": "spawn",
+"monster": "weak",
+"forward": "door"},
+"middle left": {"back": "spawn"},
+"far left": {"back": "spawn"},
+"close right": {"back": "spawn",
+"monster": "strong",
+"state": 0},
+"middle right": {"back": "spawn"},
+"far right": {"back": "spawn"},
+"door": {"back": "spawn"},
+"mirror room": {"monster": "boss"}} 
+
+0
+100
+0
+spawn

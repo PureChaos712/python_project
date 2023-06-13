@@ -89,10 +89,10 @@ def use_potion(player_health):
 
 #def handle_code()
 
-def use_item (item, current_location, player_health):
+def use_item (item, current_location):
     if "special" in items[item]:
         if items[item].get("special") == "special":
-            handle_special(item, current_location, player_health)
+            handle_special(item, current_location)
         elif items[item].get("special") == "input_code":
             input_code(item)
     elif "take" in items[item]:

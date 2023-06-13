@@ -4,9 +4,19 @@ from storage import *
 file = open("savefile.txt", "r")
 first_time = int(file.readline())
 player_health = int(file.readline())
-current_location = file.readline()
-#inventory
-#flags
+
+current_location = file.readline()[0:-1]
+
+save_inventory = file.readline()
+print(save_inventory)
+
+if save_inventory != 0 and inventory:
+    for item in save_inventory.split(" "):
+        inventory.append(item)
+    print(inventory)
+else:
+    print("Puste")
+
 file.close()
 
 if first_time:
@@ -44,7 +54,10 @@ while player_health > 0:
         print(f"You are currently in {current_location}")
     elif (" ".join(action) == "quit"):
         file = open("savefile.txt", "w")
-        file.write("0\n"+str(player_health)+"\n"+str(current_location))
+        # if inventory:
+        file.write("0\n"+str(player_health)+"\n"+str(current_location)+"\n"+" ".join(inventory))
+        # else:
+        #     file.write("0\n"+str(player_health)+"\n"+str(current_location)+"\n0")
         print("Darkness surrounds you as you lose consciousness")
         break
     else:

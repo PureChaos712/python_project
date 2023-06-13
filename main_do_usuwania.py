@@ -283,10 +283,6 @@ def death():
     print("Umarłeś. Ale jesteś znowu w korytarzu. Możesz walczyć jeszcze raz")
     #dodanie do ekwipunku potionki jeśli jej nie ma
 
-print("Welcome to a text-based escape room")
-help()
-print("You find yourself standing in a dark corridor. From here you can go \n         <<forward>>\n<<far left>>     <<far right>>\n<<middle left>>  <<middle right>>\n<<close left>>   <<close right>>")
-
     elif (" ".join(action) == "look around"):
         look_around(current_location)
     elif (action[0] == "examine"):
