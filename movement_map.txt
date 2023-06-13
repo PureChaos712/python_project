@@ -16,4 +16,4 @@
 "middle right": {"back": "spawn"},
 "far right": {"back": "spawn"},
 "door": {"back": "spawn"},
-"mirror room": {"monster": "boss"}} 
+"mirror room": {"monster": "boss"}}

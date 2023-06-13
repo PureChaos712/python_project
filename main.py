@@ -10,10 +10,10 @@ current_location = file.readline()[0:-1]
 save_inventory = file.readline()
 print(save_inventory)
 
-if save_inventory != 0 and inventory:
-    for item in save_inventory.split(" "):
-        inventory.append(item)
-    print(inventory)
+if save_inventory != "":
+    if save_inventory:
+        for item in save_inventory.split(" "):
+            inventory.append(item)
 else:
     print("Puste")
 
@@ -63,10 +63,14 @@ while player_health > 0:
 
     elif (action == "quit"):
         file = open("savefile.txt", "w")
+        
         # if inventory:
+        
         file.write("0\n"+str(player_health)+"\n"+str(current_location)+"\n"+" ".join(inventory))
+
         # else:
         #     file.write("0\n"+str(player_health)+"\n"+str(current_location)+"\n0")
+        
         print("Darkness surrounds you as you lose consciousness")
         break
     else:
