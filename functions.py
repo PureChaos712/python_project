@@ -52,22 +52,34 @@ def examine_item(item, current_location):
         print("There's no such thing in this room")
 
 def take_item(item, current_location):
-    try:
+    if item in items:
         if current_location == items[item].get("location") and items[item].get("take"):
             items[item]["location"] = "inventory"
             inventory.append(item)
             print(f"You take <<{item}>> with yourself")
         else:
             print("Nie możesz wziąć takiego przedmiotu")
-    except:
+    else:
         print("There's no such thing in this room")
+    # try:
+    #     if current_location == items[item].get("location") and items[item].get("take"):
+    #         items[item]["location"] = "inventory"
+    #         inventory.append(item)
+    #         print(f"You take <<{item}>> with yourself")
+    #     else:
+    #         print("Nie możesz wziąć takiego przedmiotu")
+    # except:
+    #     print("There's no such thing in this room")
 
 def handle_special(item, current_location):
-    if item == "knife" and current_location == "middle right":#add locarion behind canvas
-        print(items[item].get("use"))
-        items["canvas"]["state"] = "cut"
-        items["unindentified potion"]["take"] = True
-        items["newspaper"]["take"] = True
+    if item == "knife":
+        if current_location == "middle right":#add locarion behind canvas
+            print(items[item].get("use"))
+            items["canvas"]["state"] = "cut"
+            items["unindentified potion"]["take"] = True
+            items["newspaper"]["take"] = True
+        else:
+            print("You can't use it here")
 
     elif item == "pencil":
         if "pencil" in inventory and "new notebook" in inventory:

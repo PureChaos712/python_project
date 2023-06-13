@@ -28,31 +28,40 @@ else:
     print("You're currently in",current_location)
 
 while player_health > 0:
-    action = input("What do you want to do? ").lower().split(" ")
-    if (action[0] == "go"):
-        direction = " ".join(action[1:])
-        current_location = handle_movement(current_location, direction, inventory)
-    elif (" ".join(action) == "help"):
+    action = input("What do you want to do? ").lower()
+    command = action.split(" ")[0]
+    parameter = " ".join(action.split(" ")[1:])
+
+    if (command == "go"):
+        current_location = handle_movement(current_location, parameter, inventory)
+
+    elif (action == "help"):
         user_help()
-    elif (" ".join(action) == "inventory"):
+
+    elif (action == "inventory"):
         print_inventory()
-    elif (" ".join(action) == "look around"):
+
+    elif (action == "look around"):
         print(detailed_descriptions[current_location])
-    elif (action[0] == "examine"):
-        item = " ".join(action[1:])
-        examine_item(item, current_location)
-    elif (action[0] == "take"):
-        item = " ".join(action[1:])
-        take_item(item, current_location)
-    elif (action[0] == "use"):
-        item = " ".join(action[1:])
-        if item == "unindentified potion":
+
+    elif (command == "examine"):
+        examine_item(parameter, current_location)
+
+    elif (command == "take"):
+        take_item(parameter, current_location)
+
+    elif (command == "use"):
+
+        if parameter == "unindentified potion":
             player_health, inventory = use_potion(player_health)
+
         else:
-            use_item(item, current_location, player_health)
-    elif (" ".join(action) == "where am i"):
+            use_item(item, current_location)
+
+    elif (action == "where am i"):
         print(f"You are currently in {current_location}")
-    elif (" ".join(action) == "quit"):
+
+    elif (action == "quit"):
         file = open("savefile.txt", "w")
         # if inventory:
         file.write("0\n"+str(player_health)+"\n"+str(current_location)+"\n"+" ".join(inventory))
