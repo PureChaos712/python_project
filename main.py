@@ -72,5 +72,16 @@ while player_health > 0:
         
         print("Darkness surrounds you as you lose consciousness")
         break
+
+    elif (action == "reset game"):
+        choice = input("Your whole progress will be reset. This may help you if you feel like the game files got corrupted. Are you sure you want to continue? y/n: ")
+        if choice == "y":
+
+            restart_game()
+            break
+
+        else:
+            print("Progress won't be reset")
+
     else:
         print("Wrong command")

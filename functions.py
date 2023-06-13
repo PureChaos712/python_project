@@ -1,4 +1,5 @@
 from storage import movement_map, descriptions, inventory, items
+import json
 
 def check_for_monster(direction, inventory):
     if direction in movement_map and movement_map[direction].get("monster", False):
@@ -13,23 +14,23 @@ def check_for_monster(direction, inventory):
         return True
 
 def handle_movement(current_location, direction, inventory):
-    if direction in movement_map[current_location] and direction == "back":
-        current_location = movement_map[current_location][direction]
+    possible_movement = movement_map[current_location]
+
+    if direction in possible_movement and direction == "back":
+        current_location = possible_movement[direction]
         print(descriptions[current_location])
-    elif direction in movement_map[current_location]:
+    elif direction in possible_movement:
         if check_for_monster(direction, inventory):
-            current_location = movement_map[current_location][direction]
+            current_location = possible_movement[direction]
             print(descriptions[current_location])
     else:
         print("Wrong location")#zmienić komunikat
     return(current_location)
     
 def user_help():
-    print("Commands you can use include:\n'go' + direction - to move\n'look around' - to check your surroundings\n'examine' + item - to check an item\n'take' + item - to take an item into your inventory\n'use' + item - to use item\n'inventory' - to check inventory\n'help' to check commands\n'quit' - to quit the game [progress will be saved]")
+    print("Commands you can use include:\n'go' + direction - to move\n'look around' - to check your surroundings\n'examine' + item - to check an item\n'take' + item - to take an item into your inventory\n'use' + item - to use item\n'inventory' - to check inventory\n'help' to check commands\n'quit' - to quit the game [progress will be saved]\n'reset game' - resets the game (sets all the variables back to default)")
     print("Items and directions you can use will be displayed in these brackets: <<item>>")
 
-#go - uwzględnienie potwora i noża
-#use - te co są w inventory i te co są specjalne
 #system walki
 #handler etapu w mirror room
 
@@ -42,14 +43,16 @@ def print_inventory():
         print("Your inventory is empty")
 
 def examine_item(item, current_location):
-    try:
-        if current_location == items[item].get("location"):
-            print(items[item]["description"])
-            items[item]["examined"] = True
+    if item in items:
+        if items[item].get("take"):
+            print("Nie masz w inventory tego czegos")
         else:
-            print("Pomyliłeś pokoje")
-    except:
-        print("There's no such thing in this room")
+            if current_location == items[item].get("location") or item in inventory:
+                print(items[item]["description"])
+                items[item]["examined"] = True
+            else:
+                print("Pomyliłeś pokoje")
+
 
 def take_item(item, current_location):
     if item in items:
@@ -62,19 +65,10 @@ def take_item(item, current_location):
             print("Nie możesz wziąć takiego przedmiotu")
     else:
         print("There's no such thing in this room")
-    # try:
-    #     if current_location == items[item].get("location") and items[item].get("take"):
-    #         items[item]["location"] = "inventory"
-    #         inventory.append(item)
-    #         print(f"You take <<{item}>> with yourself")
-    #     else:
-    #         print("Nie możesz wziąć takiego przedmiotu")
-    # except:
-    #     print("There's no such thing in this room")
 
 def handle_special(item, current_location):
     if item == "knife":
-        if current_location == "middle right":#add locarion behind canvas
+        if current_location == "middle right":
             print(items[item].get("use"))
             items["canvas"]["state"] = "cut"
             items["unindentified potion"]["take"] = True
@@ -91,9 +85,6 @@ def handle_special(item, current_location):
         else:
             print("Nie masz na czym użyć ołówka")
 
-    elif item == "diary":
-        pass #po wpisaniu hasła - odblokuj i zmień wartość use
-
 def use_potion(player_health):
     if player_health < 100:
         inventory.remove("unindentified potion")
@@ -103,29 +94,60 @@ def use_potion(player_health):
 #def handle_code()
 
 def use_item (item, current_location):
-    if "special" in items[item]:
-        if items[item].get("special") == "special":
-            handle_special(item, current_location)
-        elif items[item].get("special") == "input_code":
-            input_code(item)
-        else:
-            print(items[item].get("use"))
-    elif "take" in items[item]:
-        if items[item]["take"] and item in inventory:
+    if item in items:
+        if "special" in items[item]:
+            if items[item].get("special") == "special":
+                handle_special(item, current_location)
+            elif items[item].get("special") == "input_code":
+                input_code(item, current_location)
+            elif items[item].get("special") == False and items[item].get("location") == current_location:
+                print(items[item].get("use"))
+            elif items[item].get("special") == False and items[item].get("location") == "inventory":
+                print(items[item].get("use"))
+            else:
+                print("You can't do that dummy")
+        elif "take" in items[item]:
+            if items[item]["take"] and item in inventory:
+                items[item].get("use")
+        elif items[item].get("location") == current_location:
             items[item].get("use")
-    elif items[item].get("location") == current_location:
-        items[item].get("use")
-    else:
-        print("WROOOONG Idk what tho")
-
-def input_code(item):
-    if items[item].get("take"):
-        print("You should take it first")
-    else:
-        user_code = input(f"Input password for <<{item}>>: ")
-        if user_code != items[item].get("code"):
-            print("Incorrect password")
         else:
-            items[item]["special"] = False
-            print("You input the right code")
-            print(items[item]["use"])
+            print("WROOOONG Idk what tho")
+    else:
+        print("No such item")
+
+def input_code(item, current_location):
+    if items[item].get("location") == current_location or item in inventory:
+        if items[item].get("take"):
+            print("You should take it first")
+        else:
+            user_code = input(f"Input password for <<{item}>>: ")
+            if user_code != items[item].get("code"):
+                print("Incorrect password")
+            else:
+                items[item]["special"] = False
+                print("You input the right code")
+                print(items[item]["use"])
+    else:
+        print("U can't do that, there's no such thing here")
+
+def restart_game():
+    file = open("savefile.txt", "w")
+    file.write("1\n100\nspawn\n")
+
+    save_file = open("items.txt", "w")
+    load_file = open("backup_items.txt", "r")
+
+    backup = json.load(load_file)
+    json.dump(backup, save_file)
+    save_file.close()
+    load_file.close()
+
+    save_file = open("movement_map.txt", "w")
+    load_file = open("backup_movement_map.txt", "r")
+
+    backup = json.load(load_file)
+    json.dump(backup, save_file)
+    save_file.close()
+    load_file.close()
+    print("Progress got reset. Start the game again")
