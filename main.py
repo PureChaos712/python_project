@@ -4,19 +4,15 @@ from storage import *
 file = open("savefile.txt", "r")
 first_time = int(file.readline())
 player_health = int(file.readline())
-
 current_location = file.readline()[0:-1]
-
 save_inventory = file.readline()
 print(save_inventory)
-
 if save_inventory != "":
     if save_inventory:
         for item in save_inventory.split(" "):
             inventory.append(item)
 else:
     print("Puste")
-
 file.close()
 
 if first_time:
@@ -56,7 +52,7 @@ while player_health > 0:
             player_health, inventory = use_potion(player_health)
 
         else:
-            use_item(item, current_location)
+            use_item(parameter, current_location)
 
     elif (action == "where am i"):
         print(f"You are currently in {current_location}")

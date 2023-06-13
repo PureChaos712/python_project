@@ -55,6 +55,7 @@ def take_item(item, current_location):
     if item in items:
         if current_location == items[item].get("location") and items[item].get("take"):
             items[item]["location"] = "inventory"
+            items[item]["take"] = 0
             inventory.append(item)
             print(f"You take <<{item}>> with yourself")
         else:
@@ -107,6 +108,8 @@ def use_item (item, current_location):
             handle_special(item, current_location)
         elif items[item].get("special") == "input_code":
             input_code(item)
+        else:
+            print(items[item].get("use"))
     elif "take" in items[item]:
         if items[item]["take"] and item in inventory:
             items[item].get("use")
@@ -116,9 +119,13 @@ def use_item (item, current_location):
         print("WROOOONG Idk what tho")
 
 def input_code(item):
-    user_code = input(f"Input password for <<{item}>>: ")
-    if user_code != items[item].get("code"):
-        print("Incorrect password")
+    if items[item].get("take"):
+        print("You should take it first")
     else:
-        items[item]["examined"] = True
-        print("You input the right code")
+        user_code = input(f"Input password for <<{item}>>: ")
+        if user_code != items[item].get("code"):
+            print("Incorrect password")
+        else:
+            items[item]["special"] = False
+            print("You input the right code")
+            print(items[item]["use"])

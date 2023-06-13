@@ -1,4 +1,3 @@
-add inventory in savefile
 handle all special items
 add input_code()
 handle endgame
