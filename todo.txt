@@ -1,13 +1,7 @@
-
 handle endgame
-#add all furniture
-#add all text in english
 
 change description after picking up an item
 uodpornić na itemy poza items
-add fighting
-
-reset function - if files get all messed up
 
 
 (Chyba) 100% dobrze działają:
@@ -17,4 +11,7 @@ reset function - if files get all messed up
 'look around'
 'user help'
 
+add fighting
+#add all furniture
+#add all text in english
 optymalizacja, a przynajmniej poprawa estetyki

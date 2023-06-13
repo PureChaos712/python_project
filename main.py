@@ -1,6 +1,7 @@
 from functions import *
 from storage import *
 
+endgame = False
 file = open("savefile.txt", "r")
 first_time = int(file.readline())
 player_health = int(file.readline())
@@ -23,7 +24,7 @@ else:
     print("As you awaken you sth sth")
     print("You're currently in",current_location)
 
-while player_health > 0:
+while player_health > 0 and endgame == False:
     action = input("What do you want to do? ").lower()
     command = action.split(" ")[0]
     parameter = " ".join(action.split(" ")[1:])
@@ -50,6 +51,18 @@ while player_health > 0:
 
         if parameter == "unindentified potion":
             player_health, inventory = use_potion(player_health)
+
+        elif parameter == "pinpad":
+
+            if current_location == "door":
+                user_code = input(f"Input password for <<{parameter}>>: ")
+
+                if user_code != "112233":
+                    print("Incorrect password")
+                else:
+                    endgame = True
+            else:
+                print("U can't do that, there's no such thing here")
 
         else:
             use_item(parameter, current_location)
@@ -85,3 +98,14 @@ while player_health > 0:
 
     else:
         print("Wrong command")
+
+else:
+    if endgame != False:
+        print("Endgameee")
+        #osobna sekcja, nie ma co tego rozkładać na plika na razie
+
+    elif player_health <= 0:
+        print("U ded")
+        
+    else:
+        print("Jakiś błąd")

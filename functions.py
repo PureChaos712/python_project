@@ -127,7 +127,10 @@ def input_code(item, current_location):
             else:
                 items[item]["special"] = False
                 print("You input the right code")
-                print(items[item]["use"])
+                if items[item]["use"] == "endgame":
+                    print("AAAAAAAAAAAAA")
+                else:
+                    print(items[item]["use"])
     else:
         print("U can't do that, there's no such thing here")
 
