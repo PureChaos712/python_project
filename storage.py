@@ -3,7 +3,7 @@ import codecs, json
 inventory = []
 
 descriptions = {}
-file = open("/home/weronika/Desktop/python_projekt/locations_descriptions.txt", "r")
+file = open("locations_descriptions.txt", "r")
 
 for line in file:
     line = line.split(":")
@@ -14,7 +14,7 @@ for line in file:
 file.close()
 
 detailed_descriptions = {}
-file = open("/home/weronika/Desktop/python_projekt/look_around.txt", "r")
+file = open("look_around.txt", "r")
 
 for line in file:
     line = line.split(":")
