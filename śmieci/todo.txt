@@ -1,7 +1,9 @@
+wszystkie itemy powinny działać - po testach, bez błędów
+
 handle endgame
 
+poprawa wszystkiego właściwie
 change description after picking up an item
-uodpornić na itemy poza items
 
 
 (Chyba) 100% dobrze działają:
@@ -11,7 +13,25 @@ uodpornić na itemy poza items
 'look around'
 'user help'
 
-add fighting
+#add fighting
 #add all furniture
 #add all text in english
 optymalizacja, a przynajmniej poprawa estetyki
+
+Zdobycie czerwonego fragmentu:
+1. przecięcie obrazu - middle right
+2. gazeta z zapisanym 143
+3. diary w far left - 98
+
+Zdobycie zielonego fragmentu:
+1. pokonanie potwora w close right
+2. new notebook - kod 0325 do sejfu
+3. sejf - vigenere note z "Amber" na górze
+4. pokój far right - napis na ścianie -> Ttf itluqwv sqsyd
+5. Odblokowanie laptopa -> "The eclipse serum" -> 63 zielone 
+
+Zdobycie niebieskiego fragmentu:
+1. pokonanie potwora close left
+2. old notebook - "How many petals have fallen already?"
+3. death certificate w middle left po examine closet (case 09)
+

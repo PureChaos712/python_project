@@ -30,6 +30,7 @@ while player_health > 0 and endgame == False:
     action = input("What do you want to do? ").lower()
     command = action.split(" ")[0] #akcja
     parameter = " ".join(action.split(" ")[1:]) #item
+    print("\n")
 
     if (command == "go"):
         current_location = handle_movement(current_location, parameter, inventory)
@@ -48,12 +49,9 @@ while player_health > 0 and endgame == False:
 
     elif (command == "take"):
         take_item(parameter, current_location)
-
-
-
-
+#
     elif (command == "use"):
-        if parameter == "unindentified potion":
+        if parameter == "unindentified potion" and parameter in inventory:
             player_health, inventory = use_potion(player_health)
 
         elif parameter == "pinpad":
@@ -67,12 +65,7 @@ while player_health > 0 and endgame == False:
                 print("U can't do that, there's no such thing here\n")
         else:
             use_item(parameter, current_location)
-
-
-
-
-
-
+#
     elif (action == "where am i"):
         print(f"You are currently in {current_location}\n")
 
@@ -130,6 +123,8 @@ else:
                 examine_item("mirror", current_location)
             else:
                 print("\nYou can't do that\n")
+
+
 
     elif player_health <= 0:
         print("U ded")

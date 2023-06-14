@@ -6,4 +6,4 @@ close right:You're in a small room on the right side of the building, hidden beh
 middle right:You're in a big room on the right side of the building, hidden behind green door.
 far right:You're in a medium room on the right side of the building, hidden behind blue door.
 door:You stand before enormous, metalic door. They seem to be hiding some sort of a secret from you.\nOr en exit.
-mirror_room:You're in a weird, small room. Something unsettling is happening.
+mirror room:You're in a weird, small room. Something unsettling is happening.

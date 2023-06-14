@@ -5,6 +5,7 @@ import json
 def check_for_monster(direction, inventory):
     if direction in movement_map and movement_map[direction].get("monster"):
         if "knife" in inventory:
+            print("U fight the monster\n")
             return True
         else: 
             print("To enter this room you need some sort of a weapon\n")
@@ -51,8 +52,9 @@ def examine_item(item, current_location):
 
         elif item == "closet" and current_location == "middle left":
             print(items[item]["description"]+"\n")
-            items["death certificate"]["description"] = "Pupupu death certificate"
+            items["death certificate"]["description"] = "It appears to be a death certificate of a patient. At the top of the page you can see a text written with a blue pen 'Petal program - final case 09'"
             items["death certificate"]["take"] = True
+            items["death certificate"]["use"] = "'Petal program - final case 09'. Wypis death certificate"
 
         else:
             if current_location == items[item].get("location") or item in inventory:
@@ -83,29 +85,37 @@ def use_potion(player_health):
     if player_health < 100:
         inventory.remove("unindentified potion")
         player_health += 20
-        return (player_health, inventory)
+        return(player_health, inventory)
+    else:
+        print("You hp is full\n")
+        return(player_health, inventory)
 
 def handle_special(item, current_location):
-    if item == "knife":
+    if item == "knife" and item in inventory:
         if current_location == "middle right":
             print(items[item].get("use")+"\n")
-            items["canvas"]["state"] = "cut"
+            # items["canvas"]["state"] = "cut"
             items["unindentified potion"]["take"] = True
+            items["unindentified potion"]["description"] = "Napój, który kolorem przypomina whisky. Zdaje się mieć lecznicze właściwości [Podnosi hp o 20 punktów]"
             items["newspaper"]["take"] = True
+            items["newspaper"]["description"] = "Tekst z gazety. Napisano na nim dziecięcym pismem 143"
         else:
-            print("You can't use it here\n")
+            print("You can't do that\n")
 
     elif item == "pencil":
         if "pencil" in inventory and "new notebook" in inventory:
-            items["new notebook"]["use"] = "Pod grafitem ołówka widać napis 'Nwm no coś widać I guess'"
+            items["new notebook"]["use"] = "Pod grafitem ołówka widać napis '0325 for safe'"
             print(items["new notebook"]["use"]+"\n")
         elif "pencil" not in inventory:
             print("Nie masz pencil w ekwipunku\n")
         else:
             print("Nie masz na czym użyć ołówka\n")
+    
+    else:
+        print("You can't do that\n")
 
 def use_item (item, current_location):
-    if item in items:
+    if item in items: #use vigenere note dodać
         if "special" in items[item]:
             if items[item].get("special") == "special":
                 handle_special(item, current_location)
@@ -118,10 +128,15 @@ def use_item (item, current_location):
             else:
                 print("You can't do that dummy\n")
         elif "take" in items[item]:
-            if items[item]["take"] and item in inventory:
+            if item in inventory and "use" in items[item]:
                 print(items[item].get("use")+"\n")
+            else:
+                print("You can't do that\n")
         elif items[item].get("location") == current_location:
-                print(items[item].get("use")+"\n")
+            if "use" in items[item]:
+                print(items[item].get("use", None)+"\n")
+            else:
+                print("You can't use this item\n")
         else:
             print("WROOOONG Idk what tho\n")
     else:
@@ -130,7 +145,7 @@ def use_item (item, current_location):
 def input_code(item, current_location):
     if items[item].get("location") == current_location or item in inventory:
         if items[item].get("take"):
-            print("You should take it first\n")
+            print("You don't have it in your inventory\n")
         else:
             user_code = input(f"Input password for <<{item}>>: ")
             if user_code != items[item].get("code"):
@@ -138,10 +153,21 @@ def input_code(item, current_location):
             else:
                 items[item]["special"] = False
                 print("You input the right code\n")
-                if items[item]["use"] == "endgame":
+                if items[item].get("use") == "endgame":
                     print("AAAAAAAAAAAAA\n")
-                else:
-                    print(items[item]["use"]+"\n")
+                elif item == "safe":
+                    items["vigenere note"]["take"] = True
+                    items["vigenere note"]["use"] = "plik"
+                    print("You see a <<vigenere note>>")
+                    items["vigenere note"]["description"] = "Notatka z tablicą służącą do odczytu szyfru Vigenere'a. Nad nią widnieje napis 'Jej imię'"
+                    print(items["vigenere note"]["description"]+"\n")
+                elif item == "diary":
+                    items[item]["description"] = "You opened the lock of the diary"
+                    items[item]["use"] = "98 in red"
+                    print(items[item]["use"])
+                elif item == "laptop":
+                    items[item]["use"] = "Green 63"
+                    print(items[item]["use"])
     else:
         print("U can't do that, there's no such thing here\n")
 
