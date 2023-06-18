@@ -1,4 +1,4 @@
 0
-100
+10
 spawn
-diary
+knife unindentified_potion newspaper

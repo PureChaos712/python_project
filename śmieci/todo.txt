@@ -1,22 +1,14 @@
-wszystkie itemy powinny działać - po testach, bez błędów
+save inventory differently
 
 handle endgame
 
-poprawa wszystkiego właściwie
 change description after picking up an item
 
-
-(Chyba) 100% dobrze działają:
-'go'
-'inventory'
-'where am i'
-'look around'
-'user help'
-
 #add fighting
-#add all furniture
-#add all text in english
-optymalizacja, a przynajmniej poprawa estetyki
+
+optymalizacja, a przynajmniej poprawa estetyki -> poprawa wszystkiego właściwie
+
+elementy gry:
 
 Zdobycie czerwonego fragmentu:
 1. przecięcie obrazu - middle right
@@ -35,3 +27,4 @@ Zdobycie niebieskiego fragmentu:
 2. old notebook - "How many petals have fallen already?"
 3. death certificate w middle left po examine closet (case 09)
 
+w wolnym czasie dodać walkę z 2 potworami i bossem

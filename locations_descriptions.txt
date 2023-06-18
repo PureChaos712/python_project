@@ -1,9 +1,9 @@
-spawn:Yet again, you find yourself standing in a dark corridor. In the very same spot you've awakened.\nYou could have sworn you were supposed to be standing somewhere else. You sense creeps crawling up your spine as you try to shake off the feeling of deja vu.\nThere are 7 doors, 2 closest to you are red, the middle ones are green and the 2 farthest from you are blue\nFrom here you can go \n         <<forward>>\n<<far left>>     <<far right>>\n<<middle left>>  <<middle right>>\n<<close left>>   <<close right>>
-close left:You're in a small room on the left side of the building, hidden behind red door. It's so small that it seems to be more of a storage room, or a pantry.
-middle left:You're in a big room on the left side of the building, hidden behind green door. It's spacious and although it's not fully empty, few pieces of furniture make the room feel even colder than the corridor.\nWhy are you so cold?
-far left:You're in a medium room on the left side of the building, hidden behind blue door. The first you notice is the synchronised sound of a clock ticking. 8 clocks to be exact.
-close right:You're in a small room on the right side of the building, hidden behind red door.
-middle right:You're in a big room on the right side of the building, hidden behind green door.
-far right:You're in a medium room on the right side of the building, hidden behind blue door.
+spawn:Yet again, you find yourself standing in a dark corridor. In the very same spot you've awakened.\nYou could have sworn you were supposed to be standing somewhere else. You sense creeps crawling up your spine as you try to shake off the feeling of deja vu.\nThere are 7 doors. From here you can go \n         <<forward>>\n<<far left>>     <<far right>>\n<<middle left>>  <<middle right>>\n<<close left>>   <<close right>>
+close left:You're in a small room on the left side of the building. It's so small that it seems to be more of a storage room, or a pantry.
+middle left:You're in a big room on the left side of the building. It's spacious and although it's not fully empty, few pieces of furniture make the room feel even colder than the corridor.\nWhy are you so cold?
+far left:You're in a medium room on the left side of the building. It's a child's room, probably girl's. It look as if someone has just left in the middle of playtime. There are toys and books on the floor.
+close right:You're in a small room on the right side of the building. It's not much bigger than a closet.
+middle right:You're in a big room on the right side of the building. You can see a girl staring right at you.
+far right:You're in a medium room on the right side of the building. This room gives you shivers.\nAs if the whole building wasn't creepy enough already.
 door:You stand before enormous, metalic door. They seem to be hiding some sort of a secret from you.\nOr en exit.
-mirror room:You're in a weird, small room. Something unsettling is happening.
+mirror room:You're in a weird, small room. You feel something unsettling happening.
