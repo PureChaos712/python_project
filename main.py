@@ -3,6 +3,7 @@ from storage import *
 import time
 
 #wczytaj dane z pliku
+outcome = "proceed"
 endgame = False
 file = open("savefile.txt", "r")
 first_time = int(file.readline())
@@ -16,7 +17,7 @@ if save_inventory != "":
             inventory.append(item.replace("_", " "))
 
 file.close()
-
+#dodaj go back w helpie
 #Komunikat wyświetlający się na początku gry, jeśli nie była wcześniej zapisywana
 if first_time:
     print("Welcome to a text-based escape room")
@@ -132,14 +133,20 @@ else:
         else:
             print("You can't do that\n")
 
-if outcome:
+if outcome == "proceed":
+    pass
+elif outcome:
     print("You did it. You somehow did it.\nAre you happy with yourself? Is that what you wanted?\nThe monster in you is now gone, just like you wanted.\n\nBut is it really?\n\nYou may have killed them, but they will never leave you.\n")
-
+    input("What will you do now? ")
+    print("What you want doesn't matter anymore.")
+    while True:
+        time.sleep(1.5)
+        print("You can never escape")
+ 
 else: 
     print("You couldn't kill the monster in yourself. Or maybe you didn't want to. Maybe you know that it can never leave you. It's a part of you\n\nYou're disgusting. Your hands are covered in blood yet you can't die yourself. You're stuck in your own hell forever.\n")
-
-input("What will you do now? ")
-print("What you want doesn't matter anymore.")
-while True:
-    time.sleep(1.5)
-    print("You can never escape")
+    input("What will you do now? ")
+    print("What you want doesn't matter anymore.")
+    while True:
+        time.sleep(1.5)
+        print("You can never escape")
