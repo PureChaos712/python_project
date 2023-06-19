@@ -1,5 +1,5 @@
 spawn:As you stand in the freezing darkness, you try to push aside the feeling of being watched and focus on your surroundings. Aside from 7 pairs of doors you don't see anything of interest.
-close left:You can still feel the presence of the monster you killed. Or are you getting paranoid?\nThere's a <<broken notebook>> laying on the ground.
+close left:You can still feel the presence of the monster you killed. Or are you getting paranoid?\nThere's an <<old notebook>> laying on the ground.
 middle left:There's a <<bed>> standing next to the left side of the wall. Near the opposite wall, there's a small <<closet>> next to which, on a desk, there's an old <<laptop>>. You notice a small <<safe>> right on your left, in the corner of the room. There's also a <<window>>, right in front of you. Could it be a way out?
 far left: On the top of the desk you notice a locked <<diary>>.
 close right:There's a big puddle of blood from the shadow monster you've just killed. 'Why do they bleed?' you wonder.\nYou notice a <<new notebook>> lying on the table standing by the wall.
